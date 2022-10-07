@@ -1,3 +1,4 @@
+import base64
 import os
 
 class Generic:
@@ -11,3 +12,15 @@ class Generic:
         f = open(os.path.join(file_path, file_name), 'wb')
         f.write(file_bytes)
         f.close()
+
+    def b64_encode(
+        self,
+        data: bytes,
+    ) -> bytes:
+        return base64.b64encode(data)
+
+    def b64_decode(
+        self,
+        data: bytes,
+    ) -> bytes:
+        return base64.b64decode(data)

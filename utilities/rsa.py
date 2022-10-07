@@ -6,19 +6,19 @@ from cryptography.hazmat.backends.openssl.rsa import _RSAPrivateKey, _RSAPublicK
 
 class RSA:
 
-    def get_private_key_by_file_path(
+    def get_private_key_by_file(
         self,
-        file_path: str,
+        file: str,
         password: Optional[bytes] = None,
     ) -> _RSAPrivateKey:
-        with open(file_path, "rb") as key_file:
+        with open(file, "rb") as key_file:
             key_bytes: bytes = key_file.read()
         
         return self.get_private_key_by_key_bytes(key_bytes=key_bytes, password=password)
 
     def get_private_key_by_key_bytes(
         self,
-        key_bytes: str,
+        key_bytes: bytes,
         password: Optional[str] = None,
     ) -> _RSAPrivateKey:
         private_key = serialization.load_pem_private_key(
@@ -55,6 +55,25 @@ class RSA:
         )
 
         return pem
+
+    def get_public_key_by_file(
+        self,
+        file: str,
+    ) -> _RSAPublicKey:
+        with open(file, "rb") as key_file:
+            key_bytes: bytes = key_file.read()
+        
+        return self.get_public_key_by_key_bytes(key_bytes=key_bytes)
+
+    def get_public_key_by_key_bytes(
+        self,
+        key_bytes: bytes,
+    ) -> _RSAPublicKey:
+        public_key = serialization.load_pem_public_key(
+            key_bytes,
+        )
+        
+        return public_key
 
     def get_public_key(
         self, 

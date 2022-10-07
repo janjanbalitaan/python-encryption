@@ -15,10 +15,15 @@ private_key = rsa_utils.generate_private_key(
     public_exponent=65537,
     key_size=2048,
 )
+print('Private Key: ', rsa_utils.get_private_key_pem(private_key=private_key))
+g_utils.save_bytes_to_file(rsa_utils.get_private_key_pem(private_key=private_key), '', 'private.pem')
+
 # generate public key
 # this public key is an object but if you want to save it in a file you need to call rsa_utils.get_public_key_pem() to generate a bytes type of the private key 
 # and g_utils.save_bytes_to_file() to save to a file
 public_key = rsa_utils.get_public_key(private_key)
+print('Public Key: ', rsa_utils.get_public_key_pem(public_key=public_key))
+g_utils.save_bytes_to_file(rsa_utils.get_public_key_pem(public_key=public_key), '', 'public.pem')
 
 # sign message
 text_to_sign = b'signed text'

@@ -23,6 +23,7 @@ pip install -r requirements.txt
 ## Usage
 * Running the script
 ```bash
+# This will generate private and public key file to be used
 python main.py
 ```
 * Running the test cases
@@ -30,3 +31,12 @@ python main.py
 cd tests
 pytest -v test.py 
 ```
+* Run Encrypt Text
+```bash
+python encrypt.py 
+```
+* Run Decrypt Text
+```bash
+python decrypt.py 
+```
+
